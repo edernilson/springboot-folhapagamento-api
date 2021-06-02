@@ -14,7 +14,7 @@ Criar um serviço especializado em envio de email
 Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring 5 (Boot e Data) + PostgreSQL 11
 
     [X] Criar Serviço
-    [ ] Cadastro de funcionário
+    [X] Cadastro de funcionário
     [ ] Obter saldo da conta corrente do funcionário
     [ ] Cadastro de empresa
     [ ] Obter saldo da conta corrente da empresa

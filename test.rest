@@ -1,0 +1,33 @@
+GET http://localhost:8080/funcionario
+
+###
+
+POST http://localhost:8080/funcionario
+content-type: application/json
+
+{
+    "name": "Eder Nilson",
+    "salary": 12000.00
+}
+
+### 
+
+GET http://localhost:8080/funcionario/5
+
+### 
+
+DELETE  http://localhost:8080/funcionario/1
+
+### 
+
+PUT  http://localhost:8080/funcionario/5
+content-type: application/json
+
+{
+    "name": "Eder Nilson",
+    "salary": 8000.00
+}
+
+### 
+
+GET http://localhost:8080/funcionario/5/obterSaldo
