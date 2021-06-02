@@ -1,0 +1,46 @@
+version: "3.1"
+
+services:
+  banco-de-dados:
+    image: postgres:11
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 12345678
+    ports:
+      - "5000:5432"
+    volumes:
+      - ~/.docker-conf/postgresql:/var/lib/postgresql/data
+    networks:
+      - rede-interna
+
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "eder.nilson@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "12345678"
+    ports:
+      - "5001:80"
+    depends_on:
+      - banco-de-dados
+    networks:
+      - rede-interna
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "12345678"
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/etc/:/etc/rabbitmq/
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - rede-interna    
+
+networks:
+  rede-interna:
+        driver: bridge
