@@ -16,10 +16,11 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
     [X] Criar Serviço
     [X] Cadastro de funcionário
     [X] Obter saldo da conta corrente do funcionário
-    [ ] Cadastro de empresa
+    [X] Cadastro de empresa
     [ ] Obter saldo da conta corrente da empresa
     [ ] Pagamento de salário dos funcionários
     [ ] A API deverá ser documentada com o swagger
+    [ ] A API deve ser segura utilizando Token
 
 * Regra de negócio:
 

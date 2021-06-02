@@ -1,0 +1,36 @@
+GET http://localhost:8080/empresa
+
+###
+
+POST http://localhost:8080/empresa
+content-type: application/json
+
+{
+    "corporateName": "Somapay"
+}
+
+###
+
+POST http://localhost:8080/empresa
+content-type: application/json
+
+{
+    "corporateName": "Some Corporate"
+}
+
+### 
+
+GET http://localhost:8080/empresa/1
+
+### 
+
+DELETE  http://localhost:8080/empresa/2
+
+### 
+
+PUT  http://localhost:8080/empresa/1
+content-type: application/json
+
+{
+    "corporateName": "Somapay Corporate"
+}
