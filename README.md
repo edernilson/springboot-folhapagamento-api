@@ -6,11 +6,14 @@ Tecnologias: Spring-boot, Java 11, PostgreSQL 11
 ## Serviço 1
 
 Criar um serviço especializado em envio de email
+    [ ] Criar Serviço
+    [ ] Receber mensagem do RabbitMQ enviar email
 
 ## Serviço 2
 
 Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring 5 (Boot e Data) + PostgreSQL 11
 
+    [X] Criar Serviço
     [ ] Cadastro de funcionário
     [ ] Obter saldo da conta corrente do funcionário
     [ ] Cadastro de empresa
