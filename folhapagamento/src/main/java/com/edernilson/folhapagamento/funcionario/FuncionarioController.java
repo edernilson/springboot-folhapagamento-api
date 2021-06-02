@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +51,10 @@ class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Funcionario> create(@RequestBody Funcionario item) {
+    public ResponseEntity<Funcionario> create(@RequestBody FuncionarioDTO payload) {
         try {
-            Funcionario savedItem = repository.save(item);
-            return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+            Funcionario savedFuncionario = repository.save(payload.toEntity());
+            return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
         }
@@ -92,7 +90,7 @@ class FuncionarioController {
         if (funcionarioOptional.isPresent()) {
             Funcionario funcionario = funcionarioOptional.get();
             
-            return new ResponseEntity<>(ContaCorrente.obterSaldo(funcionario), HttpStatus.OK);
+            return new ResponseEntity<>(funcionario.obterSaldoContaCorrente(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

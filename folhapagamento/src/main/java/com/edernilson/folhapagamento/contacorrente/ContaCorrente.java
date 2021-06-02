@@ -1,14 +1,42 @@
 package com.edernilson.folhapagamento.contacorrente;
 
-import java.util.Random;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import com.edernilson.folhapagamento.funcionario.Funcionario;
+@Entity
+@Table(name = "conta_corrente")
+public class ContaCorrente {
 
-public class ContaCorrente { 
-    
-    static Random random = new Random();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public static Double obterSaldo(Funcionario funcionario) {
-        return random.nextDouble()*funcionario.getSalary();
+    private Double balance;
+
+    public ContaCorrente() {
     }
+
+    public ContaCorrente(Double balance) {
+        this.balance = balance;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
 }

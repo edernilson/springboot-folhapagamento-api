@@ -7,12 +7,13 @@ content-type: application/json
 
 {
     "name": "Eder Nilson",
-    "salary": 12000.00
+    "salary": 12000.00,
+    "balance": 1000.00
 }
 
 ### 
 
-GET http://localhost:8080/funcionario/5
+GET http://localhost:8080/funcionario/1
 
 ### 
 
@@ -20,7 +21,7 @@ DELETE  http://localhost:8080/funcionario/1
 
 ### 
 
-PUT  http://localhost:8080/funcionario/5
+PUT  http://localhost:8080/funcionario/2
 content-type: application/json
 
 {

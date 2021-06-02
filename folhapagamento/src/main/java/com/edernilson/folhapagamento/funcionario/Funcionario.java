@@ -1,10 +1,16 @@
 package com.edernilson.folhapagamento.funcionario;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Funcionario {
@@ -18,7 +24,18 @@ public class Funcionario {
 
     private Double salary;
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "conta_corrente_id")
+    private ContaCorrente contaCorrente;
+
     public Funcionario() {
+    }
+
+    public Funcionario(String name, Double salary, Double balance) {
+        this.name = name;
+        this.salary = salary;
+        this.contaCorrente = new ContaCorrente(balance);
     }
 
     public Long getId() {
@@ -43,6 +60,18 @@ public class Funcionario {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public ContaCorrente getContaCorrente() {
+        return contaCorrente;
+    }
+
+    public void setContaCorrente(ContaCorrente contaCorrente) {
+        this.contaCorrente = contaCorrente;
+    }
+
+    public Double obterSaldoContaCorrente() {
+        return this.contaCorrente.getBalance();
     }
 
 }
