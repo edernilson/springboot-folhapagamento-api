@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,4 +84,18 @@ class FuncionarioController {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+    @GetMapping("{id}/obterSaldo")
+    public ResponseEntity<Double> getSaldo(@PathVariable("id") Long id) {
+        Optional<Funcionario> funcionarioOptional = repository.findById(id);
+
+        if (funcionarioOptional.isPresent()) {
+            Funcionario funcionario = funcionarioOptional.get();
+            
+            return new ResponseEntity<>(ContaCorrente.obterSaldo(funcionario), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 }

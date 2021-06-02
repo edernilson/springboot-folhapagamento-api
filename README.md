@@ -15,7 +15,7 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
 
     [X] Criar Serviço
     [X] Cadastro de funcionário
-    [ ] Obter saldo da conta corrente do funcionário
+    [X] Obter saldo da conta corrente do funcionário
     [ ] Cadastro de empresa
     [ ] Obter saldo da conta corrente da empresa
     [ ] Pagamento de salário dos funcionários
