@@ -1,10 +1,16 @@
 package com.edernilson.folhapagamento.empresa;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Empresa {
@@ -16,7 +22,17 @@ public class Empresa {
     @Column(name = "corporate_name", length = 80)
     private String corporateName;
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "conta_corrente_id")
+    private ContaCorrente contaCorrente;
+
     public Empresa() {
+    }
+
+    public Empresa(String corporateName, Double balance) {
+        this.corporateName = corporateName;
+        this.contaCorrente = new ContaCorrente(balance);
     }
 
     public Long getId() {
@@ -35,4 +51,15 @@ public class Empresa {
         this.corporateName = corporateName;
     }
 
+    public ContaCorrente getContaCorrente() {
+        return contaCorrente;
+    }
+
+    public void setContaCorrente(ContaCorrente contaCorrente) {
+        this.contaCorrente = contaCorrente;
+    }
+    
+    public Double obterSaldoContaCorrente() {
+        return this.contaCorrente.getBalance();
+    }
 }

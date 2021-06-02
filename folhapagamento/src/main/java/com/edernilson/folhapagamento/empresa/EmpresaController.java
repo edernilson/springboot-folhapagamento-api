@@ -49,10 +49,10 @@ class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity<Empresa> create(@RequestBody Empresa payload) {
+    public ResponseEntity<Empresa> create(@RequestBody EmpresaDTO payload) {
         try {
-            Empresa savedItem = repository.save(payload);
-            return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+            Empresa savedEmpresa = repository.save(payload.toEntity());
+            return new ResponseEntity<>(savedEmpresa, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
         }
@@ -79,4 +79,18 @@ class EmpresaController {
             return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+    @GetMapping("{id}/obterSaldo")
+    public ResponseEntity<Double> getSaldo(@PathVariable("id") Long id) {
+        Optional<Empresa> empresaOptional = repository.findById(id);
+
+        if (empresaOptional.isPresent()) {
+            Empresa empresa = empresaOptional.get();
+            
+            return new ResponseEntity<>(empresa.obterSaldoContaCorrente(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

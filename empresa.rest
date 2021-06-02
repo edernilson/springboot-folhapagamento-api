@@ -6,7 +6,8 @@ POST http://localhost:8080/empresa
 content-type: application/json
 
 {
-    "corporateName": "Somapay"
+    "corporateName": "Somapay",
+    "balance": 50000.00
 }
 
 ###
@@ -15,7 +16,8 @@ POST http://localhost:8080/empresa
 content-type: application/json
 
 {
-    "corporateName": "Some Corporate"
+    "corporateName": "Some Corporate",
+    "balance": 80000.00
 }
 
 ### 
@@ -34,3 +36,8 @@ content-type: application/json
 {
     "corporateName": "Somapay Corporate"
 }
+
+
+### 
+
+GET http://localhost:8080/empresa/1/obterSaldo
