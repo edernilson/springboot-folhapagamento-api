@@ -19,7 +19,7 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
     [X] Cadastro de empresa
     [X] Obter saldo da conta corrente da empresa
     [X] Pagamento de salário dos funcionários
-    [ ] A API deverá ser documentada com o swagger
+    [X] A API deverá ser documentada com o swagger
     [ ] A API deve ser segura utilizando Token
 
 * Regra de negócio:
