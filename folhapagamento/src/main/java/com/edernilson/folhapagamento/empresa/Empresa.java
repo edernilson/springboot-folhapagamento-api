@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,16 +23,16 @@ public class Empresa {
     private String corporateName;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "conta_corrente_id")
     private ContaCorrente contaCorrente;
 
     public Empresa() {
     }
 
-    public Empresa(String corporateName, Double balance) {
+    public Empresa(String corporateName, ContaCorrente contaCorrente) {
         this.corporateName = corporateName;
-        this.contaCorrente = new ContaCorrente(balance);
+        this.contaCorrente = contaCorrente;
     }
 
     public Long getId() {
@@ -62,4 +62,5 @@ public class Empresa {
     public Double obterSaldoContaCorrente() {
         return this.contaCorrente.getBalance();
     }
+
 }

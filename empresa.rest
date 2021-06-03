@@ -37,7 +37,6 @@ content-type: application/json
     "corporateName": "Somapay Corporate"
 }
 
-
 ### 
 
 GET http://localhost:8080/empresa/1/obterSaldo

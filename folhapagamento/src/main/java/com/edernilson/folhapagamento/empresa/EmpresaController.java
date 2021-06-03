@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +53,8 @@ class EmpresaController {
     @PostMapping
     public ResponseEntity<Empresa> create(@RequestBody EmpresaDTO payload) {
         try {
-            Empresa savedEmpresa = repository.save(payload.toEntity());
+            ContaCorrente contaCorrente = new ContaCorrente(payload.getBalance());
+            Empresa savedEmpresa = repository.save(payload.toEntity(contaCorrente));
             return new ResponseEntity<>(savedEmpresa, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);

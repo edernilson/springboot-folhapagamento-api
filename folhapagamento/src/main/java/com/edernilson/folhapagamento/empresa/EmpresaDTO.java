@@ -1,5 +1,7 @@
 package com.edernilson.folhapagamento.empresa;
 
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+
 public class EmpresaDTO {
 
     private Long id;
@@ -39,8 +41,8 @@ public class EmpresaDTO {
         this.balance = balance;
     }
 
-    public Empresa toEntity() {
-        return new Empresa(this.corporateName, this.balance);
+    public Empresa toEntity(ContaCorrente contaCorrente) {
+        return new Empresa(this.corporateName, contaCorrente);
     }
     
 }

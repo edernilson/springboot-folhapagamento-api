@@ -7,8 +7,21 @@ content-type: application/json
 
 {
     "name": "Eder Nilson",
-    "salary": 12000.00,
-    "balance": 1000.00
+    "salary": 1000.00,
+    "balance": 1000.00,
+    "companyId": 1
+}
+
+### 
+
+POST http://localhost:8080/funcionario
+content-type: application/json
+
+{
+    "name": "William",
+    "salary": 4000.00,
+    "balance": 1000.00,
+    "companyId": 1
 }
 
 ### 
@@ -31,4 +44,4 @@ content-type: application/json
 
 ### 
 
-GET http://localhost:8080/funcionario/5/obterSaldo
+GET http://localhost:8080/funcionario/2/obterSaldo

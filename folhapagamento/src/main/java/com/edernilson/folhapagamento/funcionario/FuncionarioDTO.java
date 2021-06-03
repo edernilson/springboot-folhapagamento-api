@@ -1,20 +1,25 @@
 package com.edernilson.folhapagamento.funcionario;
 
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+import com.edernilson.folhapagamento.empresa.Empresa;
+
 public class FuncionarioDTO {
 
     private Long id;
     private String name;
     private Double salary;
     private Double balance;
+    private Long companyId;
 
     public FuncionarioDTO() {
     }
 
-    public FuncionarioDTO(Long id, String name, Double salary, Double balance) {
+    public FuncionarioDTO(Long id, String name, Double salary, Double balance, Long companyId) {
         this.id = id;
         this.name = name;
         this.salary = salary;
         this.balance = balance;
+        this.companyId = companyId;
     }
 
     public Long getId() {
@@ -49,8 +54,16 @@ public class FuncionarioDTO {
         this.balance = balance;
     }
 
-    public Funcionario toEntity() {
-        return new Funcionario(this.name, this.salary, this.balance);
+    public Funcionario toEntity(Empresa empresa, ContaCorrente contaCorrente) {
+        return new Funcionario(this.name, this.salary, contaCorrente, empresa);
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
 }

@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+import com.edernilson.folhapagamento.empresa.Empresa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,17 +27,22 @@ public class Funcionario {
     private Double salary;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "conta_corrente_id")
     private ContaCorrente contaCorrente;
+
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
     public Funcionario() {
     }
 
-    public Funcionario(String name, Double salary, Double balance) {
+    public Funcionario(String name, Double salary, ContaCorrente contaCorrente, Empresa empresa) {
         this.name = name;
         this.salary = salary;
-        this.contaCorrente = new ContaCorrente(balance);
+        this.contaCorrente = contaCorrente;
+        this.empresa = empresa;
     }
 
     public Long getId() {
@@ -72,6 +79,14 @@ public class Funcionario {
 
     public Double obterSaldoContaCorrente() {
         return this.contaCorrente.getBalance();
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
 }

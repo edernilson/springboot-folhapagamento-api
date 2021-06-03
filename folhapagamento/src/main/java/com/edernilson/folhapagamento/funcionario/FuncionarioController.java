@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
+import com.edernilson.folhapagamento.empresa.Empresa;
+import com.edernilson.folhapagamento.empresa.EmpresaRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,8 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/funcionario")
 class FuncionarioController {
 
-    @Autowired
     FuncionarioRepository repository;
+    EmpresaRepository empresaRepository;
+
+    public FuncionarioController(FuncionarioRepository repository, EmpresaRepository empresaRepository) {
+        this.repository = repository;
+        this.empresaRepository = empresaRepository;
+    }
 
     @GetMapping
     public ResponseEntity<List<Funcionario>> getAll() {
@@ -53,9 +61,16 @@ class FuncionarioController {
     @PostMapping
     public ResponseEntity<Funcionario> create(@RequestBody FuncionarioDTO payload) {
         try {
-            Funcionario savedFuncionario = repository.save(payload.toEntity());
+
+            Optional<Empresa> empresaOptional = empresaRepository.findById(payload.getCompanyId());
+            if (!empresaOptional.isPresent()) {
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+            ContaCorrente contaCorrente = new ContaCorrente(payload.getBalance());
+            Funcionario savedFuncionario = repository.save(payload.toEntity(empresaOptional.get(), contaCorrente));
             return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println(e);
             return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
         }
     }
