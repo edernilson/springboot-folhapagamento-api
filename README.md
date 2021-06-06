@@ -6,8 +6,10 @@ Tecnologias: Spring-boot, Java 11, PostgreSQL 11
 ## Serviço 1
 
 Criar um serviço especializado em envio de email
-    [ ] Criar Serviço
-    [ ] Receber mensagem do RabbitMQ enviar email
+
+    [X] Criar Serviço
+    [X] Receber mensagem do RabbitMQ
+    [ ] Enviar email para empresa
 
 ## Serviço 2
 
