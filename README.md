@@ -20,6 +20,7 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
     [X] Obter saldo da conta corrente da empresa
     [X] Pagamento de salário dos funcionários
     [X] A API deverá ser documentada com o swagger
+    [X] Enviar mensagem para o RabbitMQ com email da empresa e lista de funcionarios
     [ ] A API deve ser segura utilizando Token
 
 * Regra de negócio:

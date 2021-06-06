@@ -2,9 +2,24 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "email-service",
+			"path": "email-service"
+		},
+		{
+			"name": "folhapagamento",
+			"path": "folhapagamento"
 		}
 	],
 	"settings": {
-		"java.configuration.updateBuildConfiguration": "automatic"
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.configuration.runtimes": [
+			{
+				"name": "JavaSE-11",
+				"path": "/usr/lib/jvm/jdk-11.0.10",
+				"default": true
+			},
+		]
 	}
 }

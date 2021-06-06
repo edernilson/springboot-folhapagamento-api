@@ -20,6 +20,8 @@ public class FolhaPagamentoController {
         try {
             folhaPagamentoService.pagarFolhaDaEmpresa(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (FolhaPagamentoException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
