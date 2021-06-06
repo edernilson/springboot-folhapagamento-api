@@ -9,7 +9,7 @@ Criar um serviço especializado em envio de email
 
     [X] Criar Serviço
     [X] Receber mensagem do RabbitMQ
-    [ ] Enviar email para empresa
+    [X] Enviar email para empresa
 
 ## Serviço 2
 
@@ -29,12 +29,14 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
 
         [X] Quando uma empresa paga o salário de um ou mais funcionários, deve ser descontada uma tarifa de 0.38% sobre o total da folha (R$)
         [ ] No serviço de pagamentos, implementar um método de autenticação via login e senha retornando um [token] de segurança, e as demais APIs devem obrigar o uso desse token
-        [ ] Quando um pagamento de uma folha for executado, deverá ser enviado um email para a empresa pagante contendo a lista dos funcionários pagos
+        [X] Quando um pagamento de uma folha for executado, deverá ser enviado um email para a empresa pagante contendo a lista dos funcionários pagos
             Obs.: Essa funcionalidade deve ser um microserviço à parte (Serviço 1) para envio de email, o qual tratará mensagens assíncronas do RabbitMQ, enviadas previamente pelo serviço de pagamentos
             
 * Diferencial
 
-        Construir um container docker para cada serviço
+    Construir um container docker para cada serviço
+        [ ] Serviço de email
+        [ ] API
         
         
         
