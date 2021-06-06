@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.NotFound;
+
 @Entity
 public class Empresa {
 
@@ -20,18 +22,25 @@ public class Empresa {
     private Long id;
 
     @Column(name = "corporate_name", length = 80)
+    @NotFound
     private String corporateName;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "conta_corrente_id")
+    @NotFound
     private ContaCorrente contaCorrente;
+
+    @Column(length = 100)
+    @NotFound
+    private String email;
 
     public Empresa() {
     }
 
-    public Empresa(String corporateName, ContaCorrente contaCorrente) {
+    public Empresa(String corporateName, String email, ContaCorrente contaCorrente) {
         this.corporateName = corporateName;
+        this.email = email;
         this.contaCorrente = contaCorrente;
     }
 
@@ -61,6 +70,14 @@ public class Empresa {
     
     public Double obterSaldoContaCorrente() {
         return this.contaCorrente.getBalance();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

@@ -1,12 +1,19 @@
 package com.edernilson.folhapagamento.empresa;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 
 public class EmpresaDTO {
 
     private Long id;
+    @NotNull(message = "Nao pode ser nulo")
     private String corporateName;
+    @Min(value = 0, message = "Tem que ser maior que 0.00")
     private Double balance;
+    @NotNull(message = "Nao pode ser nulo")
+    private String email;
 
     public EmpresaDTO() {
     }
@@ -41,8 +48,16 @@ public class EmpresaDTO {
         this.balance = balance;
     }
 
-    public Empresa toEntity(ContaCorrente contaCorrente) {
-        return new Empresa(this.corporateName, contaCorrente);
+    public String getEmail() {
+        return email;
     }
-    
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Empresa toEntity(ContaCorrente contaCorrente) {
+        return new Empresa(this.corporateName, this.email, contaCorrente);
+    }
+
 }

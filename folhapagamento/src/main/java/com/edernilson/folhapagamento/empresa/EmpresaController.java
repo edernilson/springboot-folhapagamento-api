@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +53,7 @@ class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity<Empresa> create(@RequestBody EmpresaDTO payload) {
+    public ResponseEntity<Empresa> create(@Valid @RequestBody EmpresaDTO payload) {
         try {
             ContaCorrente contaCorrente = new ContaCorrente(payload.getBalance());
             Empresa savedEmpresa = repository.save(payload.toEntity(contaCorrente));
@@ -62,7 +64,7 @@ class EmpresaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Empresa> update(@PathVariable("id") Long id, @RequestBody Empresa payload) {
+    public ResponseEntity<Empresa> update(@PathVariable("id") Long id, @Valid @RequestBody Empresa payload) {
         Optional<Empresa> empresaOptional = repository.findById(id);
         if (empresaOptional.isPresent()) {
             Empresa empresa = empresaOptional.get();
