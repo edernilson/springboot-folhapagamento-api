@@ -1,10 +1,6 @@
 package com.edernilson.folhapagamento.message;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.edernilson.folhapagamento.FolhaPagamentoApplication;
-import com.edernilson.folhapagamento.funcionario.Funcionario;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +18,8 @@ public class FolhaMessageSender {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void enviaEmailDaFolha(String nomes) {
-        final var messagem = new FolhaMessage("eder.nilson@gmail.com", nomes);
+    public void enviaEmailDaFolha(String email, String nomes) {
+        final var messagem = new FolhaMessage(email, nomes);
         log.info("Enviando mensagem...");
         rabbitTemplate.convertAndSend(FolhaPagamentoApplication.EXCHANGE_NAME, FolhaPagamentoApplication.ROUTING_KEY, messagem);
     }

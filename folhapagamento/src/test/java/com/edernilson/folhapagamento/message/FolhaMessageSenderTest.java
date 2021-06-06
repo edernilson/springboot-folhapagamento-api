@@ -16,7 +16,8 @@ public class FolhaMessageSenderTest {
 
     @Test
     void sendMessageTest() {
+        String email = "somapay@somapay.com";
         String nomes = "Eder Nilson, William";
-        folhaMessageSender.enviaEmailDaFolha(nomes);
+        folhaMessageSender.enviaEmailDaFolha(email, nomes);
     }
 }

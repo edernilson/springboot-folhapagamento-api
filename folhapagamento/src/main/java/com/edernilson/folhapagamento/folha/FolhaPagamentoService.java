@@ -36,7 +36,7 @@ public class FolhaPagamentoService {
     }
 
     /**
-     * Paga o salario dos funcionarios da empresa informada
+     * Paga o salario dos funcionarios da empresa informada e desconta um percentual da Empresa pelo servico prestado
      * 
      * @param id ID da Empresa
      * @throws Exception
@@ -68,6 +68,6 @@ public class FolhaPagamentoService {
 
         String nomes = listaFuncionarios.get().stream().map(f -> f.getName()).collect(Collectors.joining(", "));
 
-        folhaMessageSender.enviaEmailDaFolha(nomes);
+        folhaMessageSender.enviaEmailDaFolha(empresa.getEmail(), nomes);
     }
 }
