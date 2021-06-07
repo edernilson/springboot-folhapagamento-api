@@ -36,7 +36,7 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
 
     Construir um container docker para cada serviço
         [ ] Serviço de email
-        [ ] API
+        [ ] Serviço de API REST
         
                 
 ## Como Executar
