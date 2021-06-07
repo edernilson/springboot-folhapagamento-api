@@ -1,6 +1,6 @@
 # Microservices - Folha Pagamentos
 
-Tecnologias: Spring-boot, Java 11, PostgreSQL 11, RabbitMQ, Mailhog e Swagger
+Tecnologias: Spring-boot, Java 11, PostgreSQL 11, RabbitMQ, Mailhog, Swagger e Docker
 
 
 ## Serviço 1
@@ -9,7 +9,7 @@ Criar um serviço especializado em envio de email
 
     [X] Criar Serviço
     [X] Receber mensagem do RabbitMQ
-    [X] Enviar email para empresa
+    [X] Enviar email para empresa com a lista de funcionários pagos
 
 ## Serviço 2
 
@@ -35,19 +35,28 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
 * Diferencial
 
     Construir um container docker para cada serviço
-        [ ] Serviço de email
-        [ ] Serviço de API REST
+        [X] Serviço de email
+        [X] Serviço de API REST
         
-                
+
+## Como Compilar
+
+1. Serviço de Folha Pagamento
+
+        mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=edernilson/folha-pagamento-api:0.0.1
+
+2. Serviço de Email
+
+        mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=edernilson/folha-pagamento-email-service:0.0.1
 ## Como Executar
 
-1. Se estiver no linux, executar o script para abrir os gerenciadores e executar os 2 serviços
+1. Executar com o docker compose
 
-        ./runAll.sh
+        docker-compose up -d
 
-2. Executar com o docker composer
+2. Se estiver no linux, executar o script para abrir os gerenciadores e documentação Swagger
 
-        docker-compose up
+        chmod +x runAll.sh  && ./runAll.sh
 
 3. Abrir o navegador os gerenciadores:
 
@@ -63,3 +72,11 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
         * http://localhost:8025
     * Swagger API Docs
         * http://localhost:8080/api/swagger-ui.html
+
+4. Como obter o token para conectar no Swagger
+
+        curl -X POST 'localhost:8080/api/auth' --header 'Content-Type: application/json' --data '{  "username": "user", "password": "12345678"}'
+
+## License
+
+MIT

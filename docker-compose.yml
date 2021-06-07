@@ -1,8 +1,9 @@
-version: "3.1"
+version: "2"
 
 services:
-  banco-de-dados:
+  db:
     image: postgres:11
+    container_name: 'db'
     restart: always
     environment:
       POSTGRES_PASSWORD: 12345678
@@ -13,15 +14,16 @@ services:
     networks:
       - rede-interna
 
-  pgadmin-compose:
+  pgadmin4:
     image: dpage/pgadmin4
+    container_name: 'pgadmin4'
     environment:
-      PGADMIN_DEFAULT_EMAIL: "guest"
+      PGADMIN_DEFAULT_EMAIL: "guest@guest.com"
       PGADMIN_DEFAULT_PASSWORD: "12345678"
     ports:
       - "5001:80"
     depends_on:
-      - banco-de-dados
+      - db
     networks:
       - rede-interna
 
@@ -32,17 +34,18 @@ services:
       RABBITMQ_DEFAULT_USER: "guest"
       RABBITMQ_DEFAULT_PASS: "12345678"
     ports:
-        - 5672:5672
-        - 15672:15672
+      - 5672:5672
+      - 15672:15672
     volumes:
-        #- ~/.docker-conf/rabbitmq/etc/:/etc/rabbitmq/
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      #- ~/.docker-conf/rabbitmq/etc/:/etc/rabbitmq/
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
-        - rede-interna    
+      - rede-interna    
 
   mailhog:
     image: mailhog/mailhog
+    container_name: 'mailhog'
     logging:
       driver: 'none'  # disable saving logs
     ports:
@@ -50,6 +53,38 @@ services:
       - 8025:8025 # web ui
     networks:
       - rede-interna    
+
+  folha-pagamento-api:
+    container_name: 'folha-pagamento-api'
+    build:
+      context: folhapagamento
+      dockerfile: Dockerfile
+    image: edernilson/folha-pagamento-api:0.0.1
+    ports:
+      - 8080:8080
+    depends_on:
+      - 'db'
+      - 'rabbitmq'
+    environment:
+        - 'SPRING_PROFILES_ACTIVE=prod'
+    networks:
+      - rede-interna
+
+  folha-pagamento-email-service:
+    container_name: 'folha-pagamento-email-service'
+    build:
+      context: email-service
+      dockerfile: Dockerfile
+    image: edernilson/folha-pagamento-email-service:0.0.1
+    ports:
+      - 8081:8081
+    depends_on:
+      - 'folha-pagamento-api'
+      - 'rabbitmq'
+    environment:
+      - 'SPRING_PROFILES_ACTIVE=prod'
+    networks:
+      - rede-interna
       
 networks:
   rede-interna:
