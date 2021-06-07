@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.edernilson.folhapagamento</groupId>
 	<artifactId>folhapagamento</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>folhapagamento</name>
 	<description>Micro Serviço de Folha Pagamento</description>
 	<properties>
@@ -101,6 +101,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<layers>
+						<enabled>true</enabled>
+					</layers>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
