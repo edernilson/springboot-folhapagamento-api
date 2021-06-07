@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "Empresa", description = " ")
 @RestController
 @RequestMapping("/empresa")
 class EmpresaController {
@@ -27,6 +31,7 @@ class EmpresaController {
     @Autowired
     EmpresaRepository repository;
 
+    @ApiOperation(value="")
     @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         try {
@@ -85,6 +90,7 @@ class EmpresaController {
         }
     }
 
+    @ApiOperation(tags = " ", value = "Obtem o saldo da conta corrente da empresa")
     @GetMapping("{id}/obterSaldo")
     public ResponseEntity<Double> getSaldo(@PathVariable("id") Long id) {
         Optional<Empresa> empresaOptional = repository.findById(id);

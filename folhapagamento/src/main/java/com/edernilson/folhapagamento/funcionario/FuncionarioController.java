@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "Funcionario", description = " ")
 @RestController
 @RequestMapping("/funcionario")
 class FuncionarioController {
@@ -98,6 +102,7 @@ class FuncionarioController {
         }
     }
 
+    @ApiOperation(tags = " ", value = "Obtem o saldo da conta corrente do funcionario")
     @GetMapping("{id}/obterSaldo")
     public ResponseEntity<Double> getSaldo(@PathVariable("id") Long id) {
         Optional<Funcionario> funcionarioOptional = repository.findById(id);

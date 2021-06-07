@@ -1,6 +1,6 @@
 # Microservices - Folha Pagamentos
 
-Tecnologias: Spring-boot, Java 11, PostgreSQL 11
+Tecnologias: Spring-boot, Java 11, PostgreSQL 11, RabbitMQ, Mailhog e Swagger
 
 
 ## Serviço 1
@@ -38,5 +38,28 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
         [ ] Serviço de email
         [ ] API
         
-        
-        
+                
+## Como Executar
+
+1. Se estiver no linux, executar o script para abrir os gerenciadores e executar os 2 serviços
+
+        ./runAll.sh
+
+2. Executar com o docker composer
+
+        docker-compose up
+
+3. Abrir o navegador os gerenciadores:
+
+    * RabbitMQ
+        * http://localhost:15672
+        * user: guest
+        * password: 12345678
+    * PgAdmin 4
+        * http://localhost:5000
+        * user: guest
+        * password: 12345678
+    * Mailhog 
+        * http://localhost:8025
+    * Swagger API Docs
+        * http://localhost:8080/api-docs
