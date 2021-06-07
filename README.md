@@ -23,12 +23,12 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
     [X] Pagamento de salário dos funcionários
     [X] A API deverá ser documentada com o swagger
     [X] Enviar mensagem para o RabbitMQ com email da empresa e lista de funcionarios
-    [ ] A API deve ser segura utilizando Token
+    [X] A API deve ser segura utilizando Token
 
 * Regra de negócio:
 
         [X] Quando uma empresa paga o salário de um ou mais funcionários, deve ser descontada uma tarifa de 0.38% sobre o total da folha (R$)
-        [ ] No serviço de pagamentos, implementar um método de autenticação via login e senha retornando um [token] de segurança, e as demais APIs devem obrigar o uso desse token
+        [X] No serviço de pagamentos, implementar um método de autenticação via login e senha retornando um [token] de segurança, e as demais APIs devem obrigar o uso desse token
         [X] Quando um pagamento de uma folha for executado, deverá ser enviado um email para a empresa pagante contendo a lista dos funcionários pagos
             Obs.: Essa funcionalidade deve ser um microserviço à parte (Serviço 1) para envio de email, o qual tratará mensagens assíncronas do RabbitMQ, enviadas previamente pelo serviço de pagamentos
             
@@ -62,4 +62,4 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
     * Mailhog 
         * http://localhost:8025
     * Swagger API Docs
-        * http://localhost:8080/api-docs
+        * http://localhost:8080/api/swagger-ui.html

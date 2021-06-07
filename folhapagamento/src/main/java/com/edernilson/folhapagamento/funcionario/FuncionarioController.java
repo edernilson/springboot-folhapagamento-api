@@ -37,6 +37,7 @@ class FuncionarioController {
 
     @GetMapping
     public ResponseEntity<List<Funcionario>> getAll() {
+        System.out.println("Teste");
         try {
             List<Funcionario> items = new ArrayList<Funcionario>();
 
@@ -68,10 +69,13 @@ class FuncionarioController {
 
             Optional<Empresa> empresaOptional = empresaRepository.findById(payload.getCompanyId());
             if (!empresaOptional.isPresent()) {
+                System.out.println("Post: " + payload);
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
             ContaCorrente contaCorrente = new ContaCorrente(payload.getBalance());
             Funcionario savedFuncionario = repository.save(payload.toEntity(empresaOptional.get(), contaCorrente));
+            System.out.println("savedFuncionario" + savedFuncionario);
+
             return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println(e);

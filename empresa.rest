@@ -4,6 +4,7 @@ GET http://localhost:8080/api/empresa
 
 POST http://localhost:8080/api/empresa
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMDQwMTUyfQ.1e7Gkua2E290VjYXdZ02Bu6dFlymtUPjshhywmWZHcQ70eHaOfN0uE6pRehflqgZ1SYnMy4G7X11fACoLJXzNQ
 
 {
     "corporateName": "Somapay",
