@@ -8,11 +8,12 @@ import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 public class EmpresaDTO {
 
     private Long id;
-    @NotNull(message = "Nao pode ser nulo")
+    @NotNull(message = "O nome  é obrigatório")
     private String corporateName;
-    @Min(value = 0, message = "Tem que ser maior que 0.00")
+    @NotNull(message = "Saldo bancário inicial é obrigatório")
+    @Min(value = 0, message = "Valor do saldo bancário deve ser maior ou igual a zero")
     private Double balance;
-    @NotNull(message = "Nao pode ser nulo")
+    @NotNull(message = "O email é obrigatório")
     private String email;
 
     public EmpresaDTO() {

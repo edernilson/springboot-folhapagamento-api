@@ -51,3 +51,4 @@ content-type: application/json
 ### 
 
 GET http://localhost:8080/api/funcionario/2/obterSaldo
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ

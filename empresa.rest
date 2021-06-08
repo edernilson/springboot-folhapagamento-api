@@ -1,10 +1,11 @@
 GET http://localhost:8080/api/empresa
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
 
 ###
 
 POST http://localhost:8080/api/empresa
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
 
 {
     "corporateName": "Somapay",
@@ -16,6 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyO
 
 POST http://localhost:8080/api/empresa
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
 
 {
     "corporateName": "Some Corporate",
@@ -26,15 +28,19 @@ content-type: application/json
 ### 
 
 GET http://localhost:8080/api/empresa/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+
 
 ### 
 
 DELETE  http://localhost:8080/api/empresa/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
 
 ### 
 
 PUT  http://localhost:8080/api/empresa/1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
 
 {
     "corporateName": "Somapay Corporate"
@@ -43,3 +49,4 @@ content-type: application/json
 ### 
 
 GET http://localhost:8080/api/empresa/1/obterSaldo
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA

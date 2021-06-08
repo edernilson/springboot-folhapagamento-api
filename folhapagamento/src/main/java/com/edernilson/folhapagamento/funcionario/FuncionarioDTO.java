@@ -15,7 +15,7 @@ public class FuncionarioDTO {
     @Min(value = 0, message = "Valor deve ser maior que zero")
     private Double salary;
     @NotNull(message = "Saldo bancário inicial é obrigatório")
-    @Min(value = 0, message = "Valor deve ser maior ou igual a zero")
+    @Min(value = 0, message = "Valor do saldo bancário deve ser maior ou igual a zero")
     private Double balance;
     @NotNull(message = "ID da empresa on o funcionário trabalha é obrigatório")
     private Long companyId;
