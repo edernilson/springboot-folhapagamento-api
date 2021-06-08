@@ -48,12 +48,17 @@ public class FuncionarioService {
         return savedFuncionario;
     }
 
-    public Funcionario update(Long id, Funcionario payload) {
+    public Funcionario update(Long id, FuncionarioDTO payload) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(payload.getCompanyId());
+        if (!empresaOptional.isPresent()) {
+            throw new BusinessException("01", "Empresa não encontrada com companyId: "+payload.getCompanyId());
+        }        
         Optional<Funcionario> funcionarioOptional = repository.findById(id);
         if (funcionarioOptional.isPresent()) {
             Funcionario funcionario = funcionarioOptional.get();
             funcionario.setName(payload.getName());
             funcionario.setSalary(payload.getSalary());
+            funcionario.setEmpresa(empresaOptional.get());
             return repository.save(funcionario);
         }
         throw new BusinessException("01", "Funcionario não encontrado com id: "+id);

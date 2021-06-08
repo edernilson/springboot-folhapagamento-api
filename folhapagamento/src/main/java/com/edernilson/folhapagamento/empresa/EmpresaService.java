@@ -40,7 +40,7 @@ public class EmpresaService {
         return savedEmpresa;
     }
 
-    public Empresa update(Long id, Empresa payload) {
+    public Empresa update(Long id, EmpresaDTO payload) {
         Optional<Empresa> existing = repository.findById(id);
         if (existing.isPresent()) {
             Empresa empresa = existing.get();

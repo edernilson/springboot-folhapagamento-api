@@ -33,19 +33,21 @@ class EmpresaController {
         this.empresaService = empresaService;
     }
 
-    @ApiOperation(value="")
+    @ApiOperation(value = "Lista de empresas cadastrados", response = EmpresaDTO.class)
     @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         List<Empresa> items = empresaService.findAll();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Procura por uma empresa pelo id", response = EmpresaDTO.class)
     @GetMapping("{id}")
     public ResponseEntity<Empresa> getById(@PathVariable("id") Long id) {
         Empresa existing = empresaService.findById(id);
         return new ResponseEntity<>(existing, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Adiciona uma empresa", response = EmpresaDTO.class)
     @PostMapping
     public ResponseEntity<Empresa> create(@Valid @RequestBody EmpresaDTO payload, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -56,8 +58,9 @@ class EmpresaController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Atualiza uma empresa", response = EmpresaDTO.class)
     @PutMapping("{id}")
-    public ResponseEntity<Empresa> update(@PathVariable("id") Long id, @Valid @RequestBody Empresa payload, BindingResult bindingResult) {
+    public ResponseEntity<Empresa> update(@PathVariable("id") Long id, @Valid @RequestBody EmpresaDTO payload, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String erros = bindingResult.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.joining(", "));
             throw new BusinessException("10", erros);
@@ -66,6 +69,7 @@ class EmpresaController {
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Exclui uma empresa")
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         empresaService.delete(id);

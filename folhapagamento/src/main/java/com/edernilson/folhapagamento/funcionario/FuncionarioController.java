@@ -33,18 +33,21 @@ class FuncionarioController {
         this.funcionarioService = funcionarioService;
     }
 
+    @ApiOperation(value = "Lista de funcionarios cadastrados", response = FuncionarioDTO.class)
     @GetMapping
     public ResponseEntity<List<Funcionario>> getAll() throws Exception {
         List<Funcionario> items = funcionarioService.findAll();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Procura por um funcionario pelo id", response = FuncionarioDTO.class)
     @GetMapping("{id}")
     public ResponseEntity<Funcionario> getById(@PathVariable("id") Long id) {
         Funcionario funcionario = funcionarioService.findById(id);
         return new ResponseEntity<>(funcionario, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Adiciona um funcionario", response = FuncionarioDTO.class)
     @PostMapping
     public ResponseEntity<Funcionario> create(@Valid @RequestBody FuncionarioDTO payload, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -55,8 +58,9 @@ class FuncionarioController {
         return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Atualiza um funcionario", response = FuncionarioDTO.class)
     @PutMapping("{id}")
-    public ResponseEntity<Funcionario> update(@PathVariable("id") Long id, @Valid @RequestBody Funcionario payload, BindingResult bindingResult) {
+    public ResponseEntity<Funcionario> update(@PathVariable("id") Long id, @Valid @RequestBody FuncionarioDTO payload, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String erros = bindingResult.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.joining(", "));
             throw new BusinessException("10", erros);
@@ -65,6 +69,7 @@ class FuncionarioController {
         return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
     }
 
+    @ApiOperation(value = "Exclui um funcionario")
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         funcionarioService.delete(id);
