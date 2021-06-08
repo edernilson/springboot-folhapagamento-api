@@ -6,6 +6,9 @@ import javax.validation.constraints.NotNull;
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 import com.edernilson.folhapagamento.empresa.Empresa;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Funcionario")
 public class FuncionarioDTO {
 
     private Long id;
@@ -17,7 +20,7 @@ public class FuncionarioDTO {
     @NotNull(message = "Saldo bancário inicial é obrigatório")
     @Min(value = 0, message = "Valor do saldo bancário deve ser maior ou igual a zero")
     private Double balance;
-    @NotNull(message = "ID da empresa on o funcionário trabalha é obrigatório")
+    @NotNull(message = "ID da empresa onde o funcionário trabalha é obrigatório")
     private Long companyId;
 
     public FuncionarioDTO() {

@@ -25,6 +25,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
+        //@formatter:off
         return new Docket(DocumentationType.SWAGGER_2)
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
@@ -33,34 +34,35 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
+        //@formatter:on
     }
 
-    private ApiKey apiKey() { 
-        return new ApiKey("JWT", "Authorization", "header"); 
+    private ApiKey apiKey() {
+        return new ApiKey("JWT", "Authorization", "header");
     }
 
-    private SecurityContext securityContext() { 
-        return SecurityContext.builder().securityReferences(defaultAuth()).build(); 
-    } 
-    
-    private List<SecurityReference> defaultAuth() { 
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything"); 
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1]; 
-        authorizationScopes[0] = authorizationScope; 
-        return Arrays.asList(new SecurityReference("JWT", authorizationScopes)); 
+    private SecurityContext securityContext() {
+        return SecurityContext.builder().securityReferences(defaultAuth()).build();
     }
 
-    
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
+    }
 
     private ApiInfo apiInfo() {
+        //@formatter:off
         return new ApiInfoBuilder()
-                .title("Folha de Pagamento REST API")
-                .description("Um exemplo de aplicação Spring Boot REST API")
-                .version("1.0.0")
-                .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .contact(new Contact("Eder Nilson", "https://www.edernilson.com.br", "eder.nilson@gmail.com"))
-                .build();
+                        .title("Folha de Pagamento REST API")
+                        .description("Um exemplo de aplicação Spring Boot REST API")
+                        .version("0.0.2")
+                        .license("Apache License Version 2.0")
+                        .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
+                        .contact(new Contact("Eder Nilson", "https://www.edernilson.com.br", "eder.nilson@gmail.com"))
+                        .build();
+        //@formatter:on
     }
 
 }

@@ -31,7 +31,7 @@ public class Funcionario {
     @JoinColumn(name = "conta_corrente_id")
     private ContaCorrente contaCorrente;
 
-    @ManyToOne(cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 

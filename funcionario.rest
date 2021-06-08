@@ -1,13 +1,13 @@
 GET http://localhost:8080/api/funcionario
 content-type: application/json
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw
 
 ###
 
 POST http://localhost:8080/api/funcionario
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw
 
 {
     "name": "Eder Nilson",
@@ -20,7 +20,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyO
 
 POST http://localhost:8080/api/funcionario
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw
 
 {
     "name": "William",
@@ -32,23 +32,27 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyO
 ### 
 
 GET http://localhost:8080/api/funcionario/1
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw
 
 ### 
 
-DELETE  http://localhost:8080/api/funcionario/1
+DELETE  http://localhost:8080/api/funcionario/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw
 
 ### 
 
 PUT  http://localhost:8080/api/funcionario/2
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw
 
 {
     "name": "Eder Nilson",
-    "salary": 8000.00
+    "salary": 8000.00,
+    "balance": 1000.00,
+    "companyId": 1    
 }
 
 ### 
 
 GET http://localhost:8080/api/funcionario/2/obterSaldo
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg3NDYyfQ.F6oshBrbKLZ9dApztEQlXCd5EbEAKIRpDwVYFtJYBy1DzkmJ1h1UdfOsTjI6p_uMr66dOm-oRlNU-S2SrB6VWw

@@ -2,50 +2,56 @@ package com.edernilson.folhapagamento.empresa;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 import com.edernilson.folhapagamento.exception.BusinessException;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EmpresaService {
     
+    ModelMapper modelMapper;
     EmpresaRepository repository;
 
-    public EmpresaService(EmpresaRepository repository) {
+    public EmpresaService(EmpresaRepository repository, ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
         this.repository = repository;
     }
 
-    public List<Empresa> findAll() {
+    public List<EmpresaDTO> findAll() {
         List<Empresa> items = repository.findAll();
         if (items == null || items.isEmpty()) {
             throw new BusinessException("01", "Nenhuma empresa encontrada");
         }
-        return items;
+        return items.stream()
+                    .map(this::convertToDto)
+                    .collect(Collectors.toList());
     }
 
-    public Empresa findById(Long id) {
+    public EmpresaDTO findById(Long id) {
         Optional<Empresa> existing = repository.findById(id);
         if (existing.isPresent()) {
-            return existing.get();
+            return convertToDto(existing.get());
         }
         throw new BusinessException("01", "Empresa não encontrada com id: "+id);
     }
 
-    public Empresa create(EmpresaDTO payload) {
+    public EmpresaDTO create(EmpresaDTO payload) {
         ContaCorrente contaCorrente = new ContaCorrente(payload.getBalance());
         Empresa savedEmpresa = repository.save(payload.toEntity(contaCorrente));
 
-        return savedEmpresa;
+        return convertToDto(savedEmpresa);
     }
 
-    public Empresa update(Long id, EmpresaDTO payload) {
+    public EmpresaDTO update(Long id, EmpresaDTO payload) {
         Optional<Empresa> existing = repository.findById(id);
         if (existing.isPresent()) {
             Empresa empresa = existing.get();
             empresa.setCorporateName(payload.getCorporateName());
-            return repository.save(empresa);
+            return convertToDto(repository.save(empresa));
         }
         throw new BusinessException("01", "Empresa não encontrada com id: "+id);
     }
@@ -62,5 +68,11 @@ public class EmpresaService {
             return empresa.obterSaldoContaCorrente();
         }
         throw new BusinessException("01", "Empresa não encontrada com id: "+id);
+    }
+
+    private EmpresaDTO convertToDto(Empresa empresa) {
+        EmpresaDTO empresaDTO = modelMapper.map(empresa, EmpresaDTO.class);
+        empresaDTO.setBalance(empresa.obterSaldoContaCorrente());
+        return empresaDTO;
     }
 }

@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel(value = "Empresa")
 public class EmpresaDTO {
 
     private Long id;

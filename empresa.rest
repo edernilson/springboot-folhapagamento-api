@@ -1,11 +1,11 @@
 GET http://localhost:8080/api/empresa
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
 
 ###
 
 POST http://localhost:8080/api/empresa
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
 
 {
     "corporateName": "Somapay",
@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0N
 
 POST http://localhost:8080/api/empresa
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
 
 {
     "corporateName": "Some Corporate",
@@ -28,19 +28,19 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0N
 ### 
 
 GET http://localhost:8080/api/empresa/1
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
 
 
 ### 
 
 DELETE  http://localhost:8080/api/empresa/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
 
 ### 
 
 PUT  http://localhost:8080/api/empresa/1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
 
 {
     "corporateName": "Somapay Corporate"
@@ -49,4 +49,4 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0N
 ### 
 
 GET http://localhost:8080/api/empresa/1/obterSaldo
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTc0NDM3fQ._gJBCSOLQLOuYKueVJ3yTMEapcWIJiF5QA_9BmjewQoq9x0glZhuzpknSAbMcV4Z1f0lao67VefbVq2-G8RKwA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTg5ODc0fQ.zfpXUERRiLbc2_kWWkNrwuMiKQt8wFFlgcJJmJluy0NSXCSuN1LAszkQRzL5peddLaQQoRVFrloOgd4bOo8-Ag
