@@ -26,7 +26,7 @@ public class FolhaPagamentoController {
     public ResponseEntity<?> pagarSalarios(@PathVariable("id") Long id) {
         try {
             folhaPagamentoService.pagarFolhaDaEmpresa(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
         } catch (FolhaPagamentoException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         } catch (Exception e) {

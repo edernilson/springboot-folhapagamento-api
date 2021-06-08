@@ -1,0 +1,59 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres:11
+    container_name: 'db'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 12345678
+    ports:
+      - "5000:5432"
+    volumes:
+      - ~/.docker-conf/postgresql:/var/lib/postgresql/data
+    networks:
+      - rede-interna
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: 'pgadmin4'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "guest@guest.com"
+      PGADMIN_DEFAULT_PASSWORD: "12345678"
+    ports:
+      - "5001:80"
+    depends_on:
+      - db
+    networks:
+      - rede-interna
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "12345678"
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      #- ~/.docker-conf/rabbitmq/etc/:/etc/rabbitmq/
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - rede-interna    
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+    networks:
+      - rede-interna    
+      
+networks:
+  rede-interna:
+        driver: bridge

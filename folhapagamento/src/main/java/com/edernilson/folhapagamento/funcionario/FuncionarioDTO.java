@@ -1,14 +1,23 @@
 package com.edernilson.folhapagamento.funcionario;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
 import com.edernilson.folhapagamento.empresa.Empresa;
 
 public class FuncionarioDTO {
 
     private Long id;
+    @NotNull(message = "Nome do funcionário é obrigatório")
     private String name;
+    @NotNull(message = "Salário do funcionário é obrigatório")
+    @Min(value = 0, message = "Valor deve ser maior que zero")
     private Double salary;
+    @NotNull(message = "Saldo bancário inicial é obrigatório")
+    @Min(value = 0, message = "Valor deve ser maior ou igual a zero")
     private Double balance;
+    @NotNull(message = "ID da empresa on o funcionário trabalha é obrigatório")
     private Long companyId;
 
     public FuncionarioDTO() {

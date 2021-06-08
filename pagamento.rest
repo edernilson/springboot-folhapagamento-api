@@ -1,3 +1,4 @@
 
 POST http://localhost:8080/api/folhaPagamento/empresa/1/pagarSalarios
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjIzMTcyODUzfQ.jShquBqgBeYw55GYxEM1FRllXK0y-__qjqYSnBClxwHRx_-k7oq6iZCqTaCiB1GV5VyXvcZdzzBztRLD-lrTuQ
 

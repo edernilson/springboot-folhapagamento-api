@@ -1,15 +1,15 @@
 package com.edernilson.folhapagamento.funcionario;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
-import com.edernilson.folhapagamento.contacorrente.ContaCorrente;
-import com.edernilson.folhapagamento.empresa.Empresa;
-import com.edernilson.folhapagamento.empresa.EmpresaRepository;
+import javax.validation.Valid;
+
+import com.edernilson.folhapagamento.exception.BusinessException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,97 +27,55 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/funcionario")
 class FuncionarioController {
 
-    FuncionarioRepository repository;
-    EmpresaRepository empresaRepository;
+    FuncionarioService funcionarioService;
 
-    public FuncionarioController(FuncionarioRepository repository, EmpresaRepository empresaRepository) {
-        this.repository = repository;
-        this.empresaRepository = empresaRepository;
+    public FuncionarioController(FuncionarioService funcionarioService) {
+        this.funcionarioService = funcionarioService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Funcionario>> getAll() {
-        System.out.println("Teste");
-        try {
-            List<Funcionario> items = new ArrayList<Funcionario>();
-
-            repository.findAll().forEach(items::add);
-
-            if (items.isEmpty())
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-            return new ResponseEntity<>(items, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<List<Funcionario>> getAll() throws Exception {
+        List<Funcionario> items = funcionarioService.findAll();
+        return new ResponseEntity<>(items, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Funcionario> getById(@PathVariable("id") Long id) {
-        Optional<Funcionario> existingItemOptional = repository.findById(id);
-
-        if (existingItemOptional.isPresent()) {
-            return new ResponseEntity<>(existingItemOptional.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Funcionario funcionario = funcionarioService.findById(id);
+        return new ResponseEntity<>(funcionario, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Funcionario> create(@RequestBody FuncionarioDTO payload) {
-        try {
-
-            Optional<Empresa> empresaOptional = empresaRepository.findById(payload.getCompanyId());
-            if (!empresaOptional.isPresent()) {
-                System.out.println("Post: " + payload);
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-            ContaCorrente contaCorrente = new ContaCorrente(payload.getBalance());
-            Funcionario savedFuncionario = repository.save(payload.toEntity(empresaOptional.get(), contaCorrente));
-            System.out.println("savedFuncionario" + savedFuncionario);
-
-            return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
-        } catch (Exception e) {
-            System.out.println(e);
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+    public ResponseEntity<Funcionario> create(@Valid @RequestBody FuncionarioDTO payload, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            String erros = bindingResult.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.joining(", "));
+            throw new BusinessException("10", erros);
         }
+        Funcionario savedFuncionario = funcionarioService.create(payload);
+        return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Funcionario> update(@PathVariable("id") Long id, @RequestBody Funcionario payload) {
-        Optional<Funcionario> funcionarioOptional = repository.findById(id);
-        if (funcionarioOptional.isPresent()) {
-            Funcionario funcionario = funcionarioOptional.get();
-            funcionario.setName(payload.getName());
-            funcionario.setSalary(payload.getSalary());
-            return new ResponseEntity<>(repository.save(funcionario), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Funcionario> update(@PathVariable("id") Long id, @Valid @RequestBody Funcionario payload, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            String erros = bindingResult.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.joining(", "));
+            throw new BusinessException("10", erros);
         }
+        Funcionario savedFuncionario = funcionarioService.update(id, payload);
+        return new ResponseEntity<>(savedFuncionario, HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
-        try {
-            repository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
+        funcionarioService.delete(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @ApiOperation(tags = " ", value = "Obtem o saldo da conta corrente do funcionario")
     @GetMapping("{id}/obterSaldo")
     public ResponseEntity<Double> getSaldo(@PathVariable("id") Long id) {
-        Optional<Funcionario> funcionarioOptional = repository.findById(id);
-
-        if (funcionarioOptional.isPresent()) {
-            Funcionario funcionario = funcionarioOptional.get();
-            
-            return new ResponseEntity<>(funcionario.obterSaldoContaCorrente(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Double saldo = funcionarioService.getSaldo(id);
+        return new ResponseEntity<>(saldo, HttpStatus.OK);
     }
     
 }
