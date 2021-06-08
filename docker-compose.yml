@@ -59,7 +59,7 @@ services:
     build:
       context: folhapagamento
       dockerfile: Dockerfile
-    image: edernilson/folha-pagamento-api:0.0.1
+    image: edernilson/folha-pagamento-api:0.0.2
     ports:
       - 8080:8080
     depends_on:

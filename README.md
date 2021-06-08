@@ -1,6 +1,6 @@
 # Microservices - Folha Pagamentos
 
-Tecnologias: Spring-boot, Java 11, PostgreSQL 11, RabbitMQ, Mailhog, Swagger e Docker
+Tecnologias: Spring-boot, Java 11, PostgreSQL 11, RabbitMQ, Mailhog, Swagger, Docker e ModelMapper
 
 ## Arquitetura
 ![Arquitetura](arquitetura.png?raw=true "Arquitetura do teste")
@@ -45,7 +45,7 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
 
 1. Serviço de Folha Pagamento
 
-        mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=edernilson/folha-pagamento-api:0.0.1
+        mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=edernilson/folha-pagamento-api:0.0.2
 
 2. Serviço de Email
 
