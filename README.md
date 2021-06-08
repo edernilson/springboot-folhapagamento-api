@@ -2,6 +2,8 @@
 
 Tecnologias: Spring-boot, Java 11, PostgreSQL 11, RabbitMQ, Mailhog, Swagger e Docker
 
+## Arquitetura
+![Arquitetura](arquitetura.png?raw=true "Arquitetura do teste")
 
 ## Serviço 1
 
@@ -66,7 +68,7 @@ Criar um serviço API REST utilizando as seguintes tecnologias: Java 11 + Spring
         * password: 12345678
     * PgAdmin 4
         * http://localhost:5000
-        * user: guest
+        * user: guest@guest.com
         * password: 12345678
     * Mailhog 
         * http://localhost:8025
